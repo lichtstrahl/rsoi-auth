@@ -39,10 +39,9 @@ class UserController {
                 .validStructure(dto)
                 .export()
 
-        return if (buffer.isEmpty()) {
-            val newUser: UserDTO = userService.create(dto)
-            return ResponseEntity.ok(ServerResponse.ok(newUser))
-        } else
+        return if (buffer.isEmpty())
+            ResponseEntity.ok(userService.create(dto))
+        else
             ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_JSON_ERROR))
     }
 
@@ -51,17 +50,14 @@ class UserController {
         val buffer = validator
                 .reset()
                 .addField("id")
-                .addField("firstName")
-                .addField("lastName")
-                .addField("patronymicName")
-                .addField("login")
-                .addField("password")
+                .addNullField("password")
                 .validStructure(dto)
                 .export()
-        return if (buffer.isEmpty()) {
-            val updated: UserDTO = userService.update(dto)
-            return ResponseEntity.ok(ServerResponse.ok(updated))
-        } else ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_JSON_ERROR))
+
+        return if (buffer.isEmpty())
+            ResponseEntity.ok(userService.update(dto))
+        else
+            ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_JSON_ERROR))
     }
 
     @GetMapping(value = ["/user"])

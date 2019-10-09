@@ -9,6 +9,7 @@ class UserMapper {
     fun toDTO(@NotNull user: User): UserDTO {
         val result = UserDTO()
 
+        result.id = user.id
         result.firstName = user.firstName
         result.lastName = user.lastName
         result.patronymicName = user.patronymicName

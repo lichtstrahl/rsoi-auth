@@ -9,6 +9,7 @@ data class ServerResponse<T>(
         val OK: Int = 0
         val DEFAULT_ERROR: Int = -1
         val VALIDATION_JSON_ERROR: Int = 2
+        val ENTITY_NOT_FOUND: Int = 3
 
         fun <T> ok(data: T): ServerResponse<T> = ServerResponse(error = OK, msg = "", data = data)
 
