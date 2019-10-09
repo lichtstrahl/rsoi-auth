@@ -1,4 +1,4 @@
-package iv.root.auth.data.user
+package iv.root.auth.entity.user
 
 import javax.annotation.Nullable
 import javax.persistence.*

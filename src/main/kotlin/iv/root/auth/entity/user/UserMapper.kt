@@ -1,4 +1,4 @@
-package iv.root.auth.data.user
+package iv.root.auth.entity.user
 
 import org.springframework.stereotype.Component
 import javax.validation.constraints.NotNull
@@ -17,4 +17,13 @@ class UserMapper {
 
         return result
     }
+
+    fun toEntity(@NotNull dto: UserDTO, encryptPassword: String): User = User(
+            id = dto.id!!,
+            firstName = dto.firstName!!,
+            lastName = dto.lastName!!,
+            patronymicName = dto.patronymicName!!,
+            login = dto.login!!,
+            password = encryptPassword
+        )
 }

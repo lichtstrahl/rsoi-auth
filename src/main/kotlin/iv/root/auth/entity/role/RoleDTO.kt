@@ -1,4 +1,4 @@
-package iv.root.auth.data.role
+package iv.root.auth.entity.role
 
 import javax.annotation.Nullable
 

@@ -1,4 +1,4 @@
-package iv.root.auth.data.role
+package iv.root.auth.entity.role
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository

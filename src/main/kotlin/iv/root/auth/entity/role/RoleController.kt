@@ -1,10 +1,6 @@
-package iv.root.auth.controller
+package iv.root.auth.entity.role
 
-import iv.root.auth.data.error.ServerResponse
-import iv.root.auth.data.role.Role
-import iv.root.auth.data.role.RoleDTO
-import iv.root.auth.data.role.RoleMapper
-import iv.root.auth.data.role.RoleRepository
+import iv.root.auth.http.ServerResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping

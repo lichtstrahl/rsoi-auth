@@ -1,4 +1,4 @@
-package iv.root.auth.data.role
+package iv.root.auth.entity.role
 
 import org.springframework.stereotype.Component
 import java.util.stream.Collectors

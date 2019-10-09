@@ -1,10 +1,12 @@
-package iv.root.auth.data.user
+package iv.root.auth.entity.user
 
 import lombok.NoArgsConstructor
 import javax.annotation.Nullable
 
 @NoArgsConstructor
 data class UserDTO(
+        @Nullable
+        var id: Long?,
         @Nullable
         var firstName: String?,
         @Nullable
@@ -16,6 +18,6 @@ data class UserDTO(
         @Nullable
         var password: String?
 ) {
-        constructor(login: String) : this(null, null, null, login, null)
-        constructor() : this(null, null, null, null, null)
+        constructor(login: String) : this(null, null, null, null, login, null)
+        constructor() : this(null,null, null, null, null, null)
 }

@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -30,7 +29,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-//    testImplementation("org.springframework.security:spring-security-test")
 
     // Lombok
     implementation("org.projectlombok:lombok:1.18.10")
@@ -38,6 +36,8 @@ dependencies {
     implementation("javax.inject:javax.inject:1")
     // NonNull
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+    // Security
+    implementation("org.springframework.security:spring-security-core:5.2.0.RELEASE")
 }
 
 tasks.withType<Test> {
