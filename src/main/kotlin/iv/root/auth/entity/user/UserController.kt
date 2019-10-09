@@ -64,9 +64,9 @@ class UserController {
 
     @GetMapping(value = ["/user"])
     fun getUser(@RequestParam(name = "login") login: String) : ResponseEntity<UserDTO> {
-        val usr: User? = userRepository.findByLogin(login)
+        val usr: UserDTO? = userService.get(login)
         return if (usr != null)
-            ResponseEntity.ok(userMapper.toDTO(usr))
+            ResponseEntity.ok(usr)
         else
             ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
@@ -75,7 +75,7 @@ class UserController {
 
     @GetMapping(value = ["/user/all"])
     fun getAll() : ResponseEntity<List<UserDTO>> {
-
+        return ResponseEntity.ok(userService.getAll())
     }
 }
 

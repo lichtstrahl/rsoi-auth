@@ -19,7 +19,7 @@ class UserMapper {
     }
 
     fun toEntity(@NotNull dto: UserDTO, encryptPassword: String): User = User(
-            id = dto.id!!,
+            id = dto.id,
             firstName = dto.firstName!!,
             lastName = dto.lastName!!,
             patronymicName = dto.patronymicName!!,

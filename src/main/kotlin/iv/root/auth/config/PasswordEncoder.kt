@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
-class PasswordEncoder(val crypt: BCryptPasswordEncoder) : PasswordEncoder {
+class PasswordEncoder(val crypt: BCryptPasswordEncoder = BCryptPasswordEncoder()) : PasswordEncoder {
 
     override fun encode(rawPassword: CharSequence?): String {
         return crypt.encode(rawPassword)

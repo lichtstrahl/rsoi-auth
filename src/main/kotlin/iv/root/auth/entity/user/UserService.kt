@@ -32,8 +32,11 @@ class UserService {
         return userMapper.toDTO(user)
     }
 
-    fun get(login: String): UserDTO {
+    fun get(login: String): UserDTO? {
         val user: User? = userRepository.findByLogin(login)
 
+        return if (user != null) userMapper.toDTO(user) else null
     }
+
+    fun getAll(): List<UserDTO> = userRepository.findAll().map { userMapper.toDTO(it) }
 }

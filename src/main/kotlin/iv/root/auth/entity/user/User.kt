@@ -11,7 +11,7 @@ class User (
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    var id: Long,
+    var id: Long?,
 
     @NotNull
     @Column(name = "f_name", nullable = false)
