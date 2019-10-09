@@ -30,13 +30,14 @@ class UserController {
     @PostMapping(value = ["/user"])
     fun create(@RequestBody dto: UserDTO) : ResponseEntity<ServerResponse<UserDTO>> {
         val buffer = validator
-                        .reset()
-                        .notNullJSON(dto.firstName, "firstName")
-                        .notNullJSON(dto.lastName, "lastName")
-                        .notNullJSON(dto.patronymicName, "patronymicName")
-                        .notNullJSON(dto.login, "login")
-                        .notNullJSON(dto.password, "password")
-                        .export()
+                .reset()
+                .addNullField("id")
+                .addField("firstName")
+                .addField("patronymicName")
+                .addField("login")
+                .addField("password")
+                .validStructure(dto)
+                .export()
 
         return if (buffer.isEmpty()) {
             val newUser: UserDTO = userService.create(dto)
@@ -49,12 +50,13 @@ class UserController {
     fun update(@RequestBody dto: UserDTO) : ResponseEntity<ServerResponse<UserDTO>> {
         val buffer = validator
                 .reset()
-                .notNullJSON(dto.id, "id")
-                .notNullJSON(dto.firstName, "firstName")
-                .notNullJSON(dto.lastName, "lastName")
-                .notNullJSON(dto.patronymicName, "patronymicName")
-                .notNullJSON(dto.login, "login")
-                .notNullJSON(dto.password, "password")
+                .addField("id")
+                .addField("firstName")
+                .addField("lastName")
+                .addField("patronymicName")
+                .addField("login")
+                .addField("password")
+                .validStructure(dto)
                 .export()
         return if (buffer.isEmpty()) {
             val updated: UserDTO = userService.update(dto)
