@@ -52,6 +52,8 @@ class UserService {
 
     fun getAll(): List<UserDTO> = userRepository.findAll().map { userMapper.toDTO(it) }
 
+    fun remove(id: Long) = userRepository.deleteById(id)
+
     fun exists(login: String): Boolean = userRepository.findByLogin(login) != null
 
     fun exists(id: Long?, login: String): Boolean = userRepository.findByLogin(login)?.id != id

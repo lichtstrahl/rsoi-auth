@@ -1,6 +1,7 @@
 package iv.root.auth.entity.role
 
 import iv.root.auth.http.ServerResponse
+import iv.root.auth.http.Validator
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,6 +18,8 @@ class RoleController {
     lateinit var roleRepository: RoleRepository
     @Inject
     lateinit var roleMapper: RoleMapper
+    @Inject
+    lateinit var validator: Validator
 
     @PostMapping(value = ["/role"])
     fun create(@RequestBody dto: RoleDTO) : ResponseEntity<ServerResponse<RoleDTO>> {

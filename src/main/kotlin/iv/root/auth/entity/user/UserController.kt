@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
-import java.lang.StringBuilder
 import javax.inject.Inject
 
 @Slf4j
@@ -42,7 +41,7 @@ class UserController {
         return if (buffer.isEmpty())
             ResponseEntity.ok(userService.create(dto))
         else
-            ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_JSON_ERROR))
+            ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_ERROR))
     }
 
     @PutMapping(value = ["/user"])
@@ -57,7 +56,7 @@ class UserController {
         return if (buffer.isEmpty())
             ResponseEntity.ok(userService.update(dto))
         else
-            ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_JSON_ERROR))
+            ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_ERROR))
     }
 
     @GetMapping(value = ["/user"])
@@ -74,6 +73,19 @@ class UserController {
     @GetMapping(value = ["/user/all"])
     fun getAll() : ResponseEntity<List<UserDTO>> {
         return ResponseEntity.ok(userService.getAll())
+    }
+
+    @DeleteMapping(value = ["/user"])
+    fun delete(@RequestParam(name = "id") id: Long?): ResponseEntity<ServerResponse<Void>> {
+        val buffer = validator
+                .reset()
+                .notNullParam(id, "id")
+                .export()
+
+        return if (buffer.isEmpty()) {
+            userService.remove(id!!)
+            return ResponseEntity.ok().build()
+        } else ResponseEntity.ok(ServerResponse.fail(buffer.toString(), ServerResponse.VALIDATION_ERROR))
     }
 }
 
