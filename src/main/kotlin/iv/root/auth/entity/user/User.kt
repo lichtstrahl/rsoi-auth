@@ -35,7 +35,7 @@ class User (
 ) {
 
     constructor(@NotNull dto: UserDTO, encryptPassword: String): this(
-            id = dto.id!!,
+            id = dto.id,
             firstName = dto.firstName!!,
             lastName = dto.lastName!!,
             patronymicName = dto.patronymicName!!,
