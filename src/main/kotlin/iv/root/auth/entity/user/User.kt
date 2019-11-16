@@ -33,4 +33,13 @@ class User (
     @Column(name = "password", nullable = false)
     var password: String
 ) {
+
+    constructor(@NotNull dto: UserDTO, encryptPassword: String): this(
+            id = dto.id!!,
+            firstName = dto.firstName!!,
+            lastName = dto.lastName!!,
+            patronymicName = dto.patronymicName!!,
+            login = dto.login!!,
+            password = encryptPassword
+    )
 }
